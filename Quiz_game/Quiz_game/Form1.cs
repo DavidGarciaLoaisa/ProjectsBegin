@@ -1,71 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Quiz_game.Properties;
+using System;
 using System.Windows.Forms;
 
 namespace Quiz_game
 {
     public partial class Form1 : Form
     {
-        int correctAnswer;
-        int questionNumber = 1;
-        int score;
-        int percentege;
-        int totalQuestions;
+        private int _correctAnswer;
+        private int _questionNumber = 1;
+        private int _score;
+        private int _percentage;
+        private readonly int _totalQuestions;
+
         public Form1()
         {
             InitializeComponent();
 
-            AskQuestion(questionNumber);
+            AskQuestion(_questionNumber);
 
-            totalQuestions = 10;
-
+            _totalQuestions = 10;
         }
 
-        private void CheckAnswerEvent(object sender, EventArgs e)
+        //Use meaningful variable names, is doesn't matter if they get a bit long
+        private void AskQuestion(int questionNumber)
         {
-            var senderObject = (Button)sender;
-
-            int buttonTag = Convert.ToInt32(senderObject.Tag);
-
-            if (buttonTag == correctAnswer)
-            {
-                score++;
-            }
-
-            if (questionNumber == totalQuestions)
-            {
-                percentege = (int)Math.Round((double)(score*100)/totalQuestions);
-
-                MessageBox.Show(
-                    
-                    "Quiz Ended!" + Environment.NewLine +
-                    "You have answered " + score + " questions correctly." + Environment.NewLine + 
-                    "Your total percentage is: " + percentege + "%" + Environment.NewLine +
-                    "Click OK to play again."
-                    );
-                score = 0;
-                questionNumber = 0;
-                AskQuestion(questionNumber);
-            }
-
-            questionNumber++;
-
-            AskQuestion(questionNumber);
-
-        }
-
-        private void AskQuestion(int qNumb)
-        {
-            switch (qNumb)
+            switch (questionNumber)
             {
                 case 1:
-                    pictureBox1.Image = Properties.Resources.Question_image;
+                    pictureBox1.Image = Resources.Question_image;
 
                     labQuestion.Text = "¿Cual es el color del cielo?";
 
@@ -74,11 +36,11 @@ namespace Quiz_game
                     button3.Text = "Azul";
                     button4.Text = "Amarillo";
 
-                    correctAnswer = 3;
+                    _correctAnswer = 3;
                     break;
 
                 case 2:
-                    pictureBox1.Image = Properties.Resources.Minecraft;
+                    pictureBox1.Image = Resources.Minecraft;
 
                     labQuestion.Text = "¿Como se llama el video juego de la imagén?";
 
@@ -87,11 +49,11 @@ namespace Quiz_game
                     button3.Text = "Standmain";
                     button4.Text = "Blockscraft";
 
-                    correctAnswer = 2;
+                    _correctAnswer = 2;
                     break;
 
                 case 3:
-                    pictureBox1.Image = Properties.Resources.Question_image;
+                    pictureBox1.Image = Resources.Question_image;
 
                     labQuestion.Text = "¿Como se escribe verde en ingles?";
 
@@ -100,11 +62,11 @@ namespace Quiz_game
                     button3.Text = "Yellow";
                     button4.Text = "Blue";
 
-                    correctAnswer = 2;
+                    _correctAnswer = 2;
                     break;
 
                 case 4:
-                    pictureBox1.Image = Properties.Resources.Esferas;
+                    pictureBox1.Image = Resources.Esferas;
 
                     labQuestion.Text = "¿Cuantas son las esferas del dragón?";
 
@@ -113,11 +75,11 @@ namespace Quiz_game
                     button3.Text = "2";
                     button4.Text = "7";
 
-                    correctAnswer = 4;
+                    _correctAnswer = 4;
                     break;
 
                 case 5:
-                    pictureBox1.Image = Properties.Resources.Question_image;
+                    pictureBox1.Image = Resources.Question_image;
 
                     labQuestion.Text = "¿De que color era la capa blanca de Simon Bolivar?";
 
@@ -126,11 +88,11 @@ namespace Quiz_game
                     button3.Text = "Blanca";
                     button4.Text = "Verde";
 
-                    correctAnswer = 3;
+                    _correctAnswer = 3;
                     break;
 
                 case 6:
-                    pictureBox1.Image = Properties.Resources.Dragon_ball;
+                    pictureBox1.Image = Resources.Dragon_ball;
 
                     labQuestion.Text = "¿Como se llama el primer hijo de Goku?";
 
@@ -139,11 +101,11 @@ namespace Quiz_game
                     button3.Text = "Gohan";
                     button4.Text = "Goten";
 
-                    correctAnswer = 3;
+                    _correctAnswer = 3;
                     break;
 
                 case 7:
-                    pictureBox1.Image = Properties.Resources.Question_image;
+                    pictureBox1.Image = Resources.Question_image;
 
                     labQuestion.Text = "¿Cuántos pares de cada animal subió Moisés a su arca?";
 
@@ -152,11 +114,11 @@ namespace Quiz_game
                     button3.Text = "1";
                     button4.Text = "Ninguno";
 
-                    correctAnswer = 4;
+                    _correctAnswer = 4;
                     break;
 
                 case 8:
-                    pictureBox1.Image = Properties.Resources.Sonic;
+                    pictureBox1.Image = Resources.Sonic;
 
                     labQuestion.Text = "¿Que tipo de animal es Sonic?";
 
@@ -165,11 +127,11 @@ namespace Quiz_game
                     button3.Text = "Gato";
                     button4.Text = "Mapache";
 
-                    correctAnswer = 2;
+                    _correctAnswer = 2;
                     break;
 
                 case 9:
-                    pictureBox1.Image = Properties.Resources.Question_image;
+                    pictureBox1.Image = Resources.Question_image;
 
                     labQuestion.Text = "¿Cuanto es 12 mas 15?";
 
@@ -178,11 +140,11 @@ namespace Quiz_game
                     button3.Text = "27";
                     button4.Text = "42";
 
-                    correctAnswer = 3;
+                    _correctAnswer = 3;
                     break;
 
                 case 10:
-                    pictureBox1.Image = Properties.Resources.Miles_Morales;
+                    pictureBox1.Image = Resources.Miles_Morales;
 
                     labQuestion.Text = "¿Cual es uno de los poderes de Miles?";
 
@@ -191,10 +153,46 @@ namespace Quiz_game
                     button3.Text = "Visión laser";
                     button4.Text = "Volar";
 
-                    correctAnswer = 2;
+                    _correctAnswer = 2;
                     break;
-
             }
+        }
+
+        private void CheckAnswerEvent(object sender, EventArgs e)
+        {
+            var senderObject = (Button) sender;
+
+            //what is this button Tag ??? I believe is the answer from the question ??
+            //a good variable name will avoid these type of questions, remember that you will be never working alone
+            //so you need to write code that all your colleagues can pick up quickly 
+            var buttonTag = Convert.ToInt32(senderObject.Tag);
+
+            if (buttonTag == _correctAnswer)
+            {
+                _score++;
+            }
+
+            if (_questionNumber == _totalQuestions)
+            {
+                //Is it really necessary to cast it to a int ??
+                _percentage = (int) Math.Round((double) (_score * 100) / _totalQuestions);
+
+                MessageBox.Show(
+                    "Quiz Ended!" + Environment.NewLine +
+                    "You have answered " + _score + " questions correctly." + Environment.NewLine +
+                    "Your total percentage is: " + _percentage + "%" + Environment.NewLine +
+                    "Click OK to play again."
+                );
+
+                _score = 0;
+                _questionNumber = 0;
+
+                AskQuestion(_questionNumber);
+            }
+
+            _questionNumber++;
+
+            AskQuestion(_questionNumber);
         }
     }
 }
